@@ -39,3 +39,16 @@ let texture = new MeshBasicMaterial({
 });
 let mesh = new Mesh(shape, texture);
 ```
+
+### Geometry (Shapes)
+
+Geometries
+Geometries are instances of THREE.Geometry that define the shape of an object in
+a scene. They are made up of vertices and faces (which are themselves objects and
+are accessible through the vertices and faces array properties). Vertices are the
+THREE.Vector3 objects representing points in three-dimensional space, while faces
+are the THREE.Face3 objects representing triangular surfaces. (All more complex
+shapes are subdivided into triangular faces for rendering purposes.)
+Luckily, dealing with vertices and faces directly is usually unnecessary because
+THREE.Geometry has many subclasses that help create commonly used shapes.
+
