@@ -14,8 +14,9 @@ import {
   BufferGeometry,
   LineBasicMaterial,
   Line,
+  Mesh,
 } from "three";
-import { Mesh } from "three/webgpu";
+
 const CONFIG = {
   wireframe: true,
   wireframeLinewidth: 2,
@@ -50,4 +51,16 @@ export function create_simple_line(color, starts, ends) {
   const geometry = new BufferGeometry().setFromPoints([starts, ends]);
   let material = new LineBasicMaterial({ color: color });
   return new Line(geometry, material);
+}
+
+export function create_simple_triangle(color, points) {
+  let texture = new MeshBasicMaterial({
+    color: color,
+  });
+  let lines = [
+    create_simple_line(color, points[0], points[1]),
+    create_simple_line(color, points[1], points[2]),
+    create_simple_line(color, points[2], points[0]),
+  ];
+  return lines;
 }

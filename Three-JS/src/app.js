@@ -1,6 +1,12 @@
-import { Mesh, PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import {
+  Mesh,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+  MeshBasicMaterial,
+} from "three";
 import { randFloat } from "three/src/math/MathUtils.js";
-import { threshold } from "three/tsl";
+import { FontLoader, TextGeometry } from "three/examples/jsm/Addons.js";
 
 export class Application {
   #camera_pos = {
@@ -50,6 +56,29 @@ export class Application {
       object.rotation.x += randFloat(0.00001, 0.009);
       object.rotation.y += randFloat(0.0001, 0.01);
     }
+  }
+
+  async load_texture(text, texture) {
+    const loader = new FontLoader();
+
+    loader.load(texture, (font) => {
+      const geometry = new TextGeometry(text, {
+        font: font,
+        size: 80,
+        depth: 5,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 10,
+        bevelSize: 8,
+        bevelOffset: 0,
+        bevelSegments: 5,
+      });
+
+      const mat = new MeshBasicMaterial();
+      const mesh = new Mesh(geometry, mat);
+      this.objects.push(mesh);
+      this.set_scene();
+    });
   }
 
   render() {

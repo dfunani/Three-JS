@@ -13,9 +13,10 @@ import {
   circle,
   ring,
   line,
+  triangle,
 } from "./shapes";
 
-let app = new Application([
+[
   // redCube,
   // blueSphere,
   // greenSpheroid,
@@ -27,8 +28,12 @@ let app = new Application([
   // plane,
   // circle,
   // ring,
-  line
-]);
+  // ...triangle,
+];
+let objects = [];
+
+let app = new Application(objects);
+app.load_texture("Hello WOrld", "/fonts/helvetiker_bold.typeface.json");
 
 app.renderer.setAnimationLoop(() => {
   app.rotate_objects();

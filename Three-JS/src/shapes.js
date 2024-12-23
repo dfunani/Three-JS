@@ -1,5 +1,9 @@
 import { Color, Vector3 } from "three";
-import { create_simple_line, create_simple_mesh } from "./factories";
+import {
+  create_simple_line,
+  create_simple_mesh,
+  create_simple_triangle,
+} from "./factories";
 
 export const redCube = create_simple_mesh(Color.NAMES.red, "cube", {
   width: 200,
@@ -69,3 +73,9 @@ export const line = create_simple_line(
   new Vector3(-100, 0, 0),
   new Vector3(100, 0, 0)
 );
+
+export const triangle = create_simple_triangle(Color.NAMES.whitesmoke, [
+  new Vector3(0, 500, 0),
+  new Vector3(500, 500, 0),
+  new Vector3(500, 0, 0),
+]);

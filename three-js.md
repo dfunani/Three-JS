@@ -52,3 +52,29 @@ shapes are subdivided into triangular faces for rendering purposes.)
 Luckily, dealing with vertices and faces directly is usually unnecessary because
 THREE.Geometry has many subclasses that help create commonly used shapes.
 
+### Materials (Textures)
+
+Materials are instances of THREE.Material that define how objects appear. There are
+several common material subclasses:
+
+- MeshBasicMaterial: It is not affected by lighting (a characteristic called unlit), so
+  this is usually used to display a solid color or a wireframe.
+  Two adjacent, same-colored, unlit surfaces are difficult to tell
+  apart.
+- MeshNormalMaterial The red/green/blue values of the colors displayed by this
+  material are based on the magnitude of the x/y/z values of
+  the faces' normal vectors. (A normal vector is perpendicular
+  to a surface.) This material is unlit and useful for quickly
+  distinguishing the shape of an object.
+- MeshDepthMaterial It is an unlit material that shows shades of gray, with
+  brightness depending on the distance from the camera.
+  It is useful when designing scenes before applying more
+  realistic textures.
+- MeshLambertMaterial Faces are affected by lighting, but are not shiny. Specifically,
+  lighting is calculated per-vertex and is interpolated over faces.
+  It will appear black if there are no lights in the scene.
+- MeshPhongMaterial Faces are affected by lighting, and can be shiny. Specifically,
+  lighting is calculated per-texel (texture pixel), so this will be
+  more accurate than Lambert materials when the light source is
+  close to the object in questionn. It will appear black if there are
+  no lights in the scene.
