@@ -33,7 +33,8 @@ import {
 let objects = [];
 
 let app = new Application(objects);
-app.load_texture("Hello WOrld", "/fonts/helvetiker_bold.typeface.json");
+app.load_text("Hello WOrld", "/fonts/helvetiker_bold.typeface.json");
+app.load_texture("sphere", "earth.jpg");
 
 app.renderer.setAnimationLoop(() => {
   app.rotate_objects();

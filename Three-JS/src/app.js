@@ -4,9 +4,11 @@ import {
   Scene,
   WebGLRenderer,
   MeshBasicMaterial,
+  ImageUtils,
 } from "three";
 import { randFloat } from "three/src/math/MathUtils.js";
 import { FontLoader, TextGeometry } from "three/examples/jsm/Addons.js";
+import earth from "/earth.jpg?url"
 
 export class Application {
   #camera_pos = {
@@ -58,11 +60,11 @@ export class Application {
     }
   }
 
-  async load_texture(text, texture) {
+  load_text(text, texture) {
     const loader = new FontLoader();
 
     loader.load(texture, (font) => {
-      const geometry = new TextGeometry(text, {
+      const textGeometry = new TextGeometry(text, {
         font: font,
         size: 80,
         depth: 5,
@@ -74,11 +76,20 @@ export class Application {
         bevelSegments: 5,
       });
 
-      const mat = new MeshBasicMaterial();
-      const mesh = new Mesh(geometry, mat);
+      const textMaterial = new MeshBasicMaterial();
+      const mesh = new Mesh(textGeometry, textMaterial);
       this.objects.push(mesh);
       this.set_scene();
     });
+  }
+
+  load_texture(object, texture) {
+    console.log(ImageUtils)
+    let imageTexture = ImageUtils.getDataURL(earth);
+    let imageMaterial = new MeshBasicMaterial({ map: imageTexture });
+    let mesh = new Mesh(object, imageMaterial);
+    this.objects.push(mesh);
+    this.set_scene();
   }
 
   render() {
